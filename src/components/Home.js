@@ -10,6 +10,8 @@ import Header from './Header'
 import List from './List'
 import Menu from './Menu'
 import Slide from './Slider'
+import Genres from './Genres'
+
 
 import SideMenu from 'react-native-side-menu'
 
@@ -62,11 +64,12 @@ class Home extends Component {
             <View style={{ flex: 1 }}>
 
                 <SideMenu
-                    menu={<Menu
-                        navigation={this.props.navigation}
-                        itemSelected={this.itemSelected}
-                        itemSelectedValue={this.state.itemSelected}
-                    />}
+                    menu={
+                        <Menu
+                            navigation={this.props.navigation}
+                            itemSelected={this.itemSelected}
+                            itemSelectedValue={this.state.itemSelected} />
+                    }
                     isOpen={this.state.isOpen}
                     onChange={(isOpen) => this.updateMenu(isOpen)}
                     style={{ flex: 1 }}>
@@ -74,13 +77,16 @@ class Home extends Component {
                     <ScrollView style={[{ flex: 1 }, styles.container]}>
                         <Header navigation={this.props.navigation} toggle={this.toggle.bind(this)} />
 
-                        <View style={{ flex: 1 }}>
+                        {this.state.itemSelected == 'Home' ? <View style={{ flex: 1 }}>
                             <Slide />
                             <List
                                 getTwoRows={this.getTwoRows}
+                                navigation={this.props.navigation} />
+                        </View> :
+                            <Genres
                                 navigation={this.props.navigation}
-                            />
-                        </View>
+                                item={this.state.itemSelected} />
+                        }
                     </ScrollView>
                 </SideMenu>
             </View>
