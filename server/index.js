@@ -36,7 +36,6 @@ app.get('/all', (req, res, next) => {
                 };
 
                 console.log(i);
-                console.log("error 1 ", error);
 
                 callback(null, data)
             });
@@ -55,8 +54,51 @@ app.get('/all', (req, res, next) => {
 //shows/:id
 //get all shows that id is equal to genre 
 app.get('/shows/:id', (req, res, next) => {
-    Shows.find({ 'details.genres': { $in: [req.params.id] } }, function (err, shows) {
-        console.log("error ", err)
+    Shows.find({ 'details.genres': { $in: [req.params.id] } }, (err, shows) => {
+        res.json(shows)
+    }).limit(5).skip(1).sort({ "name": 1 })
+})
+
+/**
+ * Get my list and top pics
+ */
+app.get("/home", (req, res, next) => {
+    Shows.find((err, shows) => {
+           
+            const myList = shows.slice(0)
+            const val = Math.floor(myList.length / 2)
+            const topPics = myList.splice(0, 7)
+            const data = {
+                "myList": myList,
+                "topPics": topPics
+            }
+           
+            res.json(data)
+           
+    }).limit(14)
+})
+
+
+/**
+ * get all shows
+ */
+app.get('/shows', (req, res, next) => {
+    Shows.find((err, shows) => {
+        res.json(shows)
+    })
+})
+
+app.get('/search/:id', (req, res, next) => {
+    Shows.find({ 'name': { $in: [req.params.id] } }, (err, shows) => {
+        res.json(shows)
+    })
+})
+
+/**
+ * Delete all shows
+ */
+app.get('/delete', (req, res, next) => {
+    Shows.remove((err, shows) => {
         res.json(shows)
     })
 })

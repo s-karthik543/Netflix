@@ -16,7 +16,6 @@ import { Provider } from 'react-redux'
 
 import store from './src/store'
 import Routes from './src/config/routes'
-import Home from './src/components/Home'
 
 const Navigator = StackNavigator(Routes, {
   headerMode: 'screen'

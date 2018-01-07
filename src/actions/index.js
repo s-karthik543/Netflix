@@ -4,6 +4,9 @@ import {
     FETCHING_DATA_ERROR
 } from '../constants/';
 import getDataApi from '../api/api'
+import * as homeAction from './home'
+
+export default Object.assign({},homeAction)
 
 export const getData = () => {
     return {

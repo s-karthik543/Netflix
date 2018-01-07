@@ -1,18 +1,26 @@
-import Home from '../components/Home'
+import Home from '../components/home/Home'
 import Search from '../components/Search'
 import Details from '../components/Details'
+import Episodes from '../components/Episodes'
 import EpisodesPicker from '../components/EpisodesPicker'
 import VideoPlayerView from '../components/VideoPlayerView';
+import Drawer from '../components/Drawer/Drawer'
 
 const Routes = {
     Home: {
-        screen: Home,
+        screen: Drawer,
         navigationOptions: ({ navigation }) => ({
             header: false
         })
     },
     Search: {
         screen: Search,
+        navigationOptions: ({ navigation }) => ({
+            header: false
+        })
+    },
+    Episodes: {
+        screen: Episodes,
         navigationOptions: ({ navigation }) => ({
             header: false
         })

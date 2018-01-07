@@ -15,6 +15,7 @@ class VideoPlayerView extends Component {
     componentWillMount() {
         Orientation.lockToLandscape()
     }
+
     _back() {
         const { goBack } = this.props.navigation
         Orientation.lockToPortrait()
@@ -30,6 +31,10 @@ class VideoPlayerView extends Component {
                 />
             </View>
         )
+    }
+
+    componentWillUnmount(){
+         Orientation.lockToPortrait()
     }
 }
 

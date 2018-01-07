@@ -10,7 +10,8 @@ import {
     ScrollView,
     Dimensions,
     Share,
-    Animated
+    Animated,
+    TouchableOpacity
 } from 'react-native'
 
 import Icon from 'react-native-vector-icons/FontAwesome'
@@ -241,6 +242,10 @@ class Details extends Component {
                                     <Text style={styles.text}>Share</Text>
                                 </View>
                             </TouchableHighlight>
+
+                            <TouchableOpacity onPress={() => this.navigateToEpisodes(episodes, season)} >
+                                <Text style={styles.text}>Edpisodes</Text>
+                            </TouchableOpacity>
                         </View>
                     </View>
                     {/*    <View onLayout={({ nativeEvent }) => {
@@ -253,12 +258,22 @@ class Details extends Component {
                             getSeason={this.getSeason.bind(this)}
                             navigation={this.props.navigation}
                             data={episodes}
-                            currentSeason={this.state.currentSeason}
+                            currentSeason={this..currentSeason}
                       />
                     {/* </View> */}
                 </Animated.ScrollView>
             </View>
         )
+    }
+
+    navigateToEpisodes = (episodes, season) => {
+        console.log("season ", season)
+        this.props.navigation.navigate('Episodes', {
+            seasons: this.getLastSeason(),
+            getSeason: this.getSeason.bind(this),
+            currentSeason: this.state.currentSeason,
+            episodes: episodes
+        })
     }
 }
 

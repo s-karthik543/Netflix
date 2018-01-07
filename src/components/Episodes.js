@@ -18,9 +18,10 @@ class Episodes extends Component {
     }
 
     renderEpisodes = () => {
-        const { currentSeason } = this.props
+        console.log("Props ", this.props.navigation)
+        const { currentSeason, episodes } = this.props.navigation.state.params
 
-        return this.props.episodes.filter((element) => {
+        return episodes.filter((element) => {
             return element.season == currentSeason
         }).map((item, i) => {
             const img = this.getThumbnail(item)
@@ -58,20 +59,23 @@ class Episodes extends Component {
 
     render() {
         const { navigate } = this.props.navigation
+        const { getSeason, seasons, currentSeason } = this.props.navigation.state.params
+
+        console.log("Data ", this.props.navigation.state.params)
 
         return (
             <View style={styles.container}>
-                {this.props.seasons == 1 ?
+                {seasons == 1 ?
                     <TouchableWithoutFeedback>
                         <View>
-                            <Text style={styles.buttonText}>Season {this.props.currentSeason}</Text>
+                            <Text style={styles.buttonText}>Season {currentSeason}</Text>
                         </View>
                     </TouchableWithoutFeedback> :
                     <TouchableWithoutFeedback onPress={() => navigate('EpisodesPicker',
-                        { getSeason: this.props.getSeason, seasons: this.props.seasons, currentSeason: this.props.currentSeason }
+                        { getSeason: getSeason, seasons: seasons, currentSeason: currentSeason }
                     )}>
                         <View style={styles.buttonWithIcon}>
-                            <Text style={styles.buttonText}>Season {this.props.currentSeason}</Text>
+                            <Text style={styles.buttonText}>Season {currentSeason}</Text>
                             <Icon
                                 style={styles.iconDown}
                                 name="chevron-down"
@@ -81,7 +85,7 @@ class Episodes extends Component {
                         </View>
                     </TouchableWithoutFeedback>
                 }
-                <ScrollView style={{marginBottom:20}}>
+                <ScrollView style={{ marginBottom: 20 }}>
                     <View style={styles.renderEpisodes}>
                         {this.renderEpisodes()}
                     </View>
