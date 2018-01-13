@@ -17,6 +17,9 @@ export const fetchHomeData = () => {
                     data
                 })
                 dispatch(setLoader(false))
+            }).catch((error) => {
+                dispatch(setLoader(false))
+                console.log("error ", error.message)
             })
     }
 }
@@ -28,9 +31,9 @@ export const setLoader = (isLoading) => {
     }
 }
 
-export const onMenuselected=(menuItem)=>{
-    return{
-        type:MENU_SELECTED,
-        payload:menuItem
+export const onMenuselected = (menuItem) => {
+    return {
+        type: MENU_SELECTED,
+        payload: menuItem
     }
 }

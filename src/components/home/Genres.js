@@ -56,7 +56,7 @@ class Genres extends Component {
     render() {
         const { isFetching } = this.props.data
         return (
-            <View style={{ flex: 1, backgroundColor: 'black' }}>
+            <View style={{ flex: 1, backgroundColor: 'black',justifyContent:'center',alignItems:'center' }}>
                 {isFetching ? this.renderActivityIndicator() : this.renderList()}
             </View>
         )
