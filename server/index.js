@@ -1,12 +1,10 @@
-var express =require('express')
+var express = require('express')
 const app = express()
 
 var request = require('request')
-var async =require('async')
-import mongoose from 'mongoose'
-import { error } from 'util';
-import Shows from './models/shows'
-import { setTimeout } from 'timers';
+var async = require('async')
+var mongoose = require('mongoose')
+var Shows = require('./models/shows')
 
 const numTvShows = 100
 
@@ -64,17 +62,17 @@ app.get('/shows/:id', (req, res, next) => {
  */
 app.get("/home", (req, res, next) => {
     Shows.find((err, shows) => {
-           
-            const myList = shows.slice(0)
-            const val = Math.floor(myList.length / 2)
-            const topPics = myList.splice(0, 7)
-            const data = {
-                "myList": myList,
-                "topPics": topPics
-            }
-           
-            res.json(data)
-           
+
+        const myList = shows.slice(0)
+        const val = Math.floor(myList.length / 2)
+        const topPics = myList.splice(0, 7)
+        const data = {
+            "myList": myList,
+            "topPics": topPics
+        }
+
+        res.json(data)
+
     }).limit(14)
 })
 
