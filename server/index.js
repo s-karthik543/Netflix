@@ -1,8 +1,8 @@
 var express =require('express')
 const app = express()
 
-import request from 'request'
-import async, { retry } from 'async'
+var request = require('request')
+var async =require('async')
 import mongoose from 'mongoose'
 import { error } from 'util';
 import Shows from './models/shows'
