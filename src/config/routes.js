@@ -1,3 +1,5 @@
+import React from 'react'
+import { StackNavigator } from 'react-navigation'
 import Home from '../components/home/Home'
 import Search from '../components/Search'
 import Details from '../components/Details'
@@ -6,7 +8,7 @@ import EpisodesPicker from '../components/EpisodesPicker'
 import VideoPlayerView from '../components/VideoPlayerView';
 import Drawer from '../components/Drawer/Drawer'
 
-const Routes = {
+const Routes = StackNavigator({
     Home: {
         screen: Drawer,
         navigationOptions: ({ navigation }) => ({
@@ -43,6 +45,8 @@ const Routes = {
             header: false
         })
     }
-}
+}, {
+        headerMode: 'screen'
+    })
 
 export default Routes

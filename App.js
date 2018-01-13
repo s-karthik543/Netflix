@@ -16,18 +16,22 @@ import { Provider } from 'react-redux'
 
 import store from './src/store'
 import Routes from './src/config/routes'
+import AppNavigator from './src/AppNavigator'
 
+/*
 const Navigator = StackNavigator(Routes, {
   headerMode: 'screen'
-})
+})*/
+
+
 
 export default class App extends Component {
 
   render() {
-  
+
     return (
       <Provider store={store}>
-        <Navigator />
+        <AppNavigator />
       </Provider>
     );
   }

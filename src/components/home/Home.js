@@ -53,16 +53,11 @@ class Home extends Component {
                 {(isLoading &&
                     menu == 'Home') ?
                     this._renderLoader() :
-
-                    <ScrollView style={[{ flex: 1 }, styles.container]}>
-
-                        {menu == 'Home' ?
-                            this._renderList() :
-                            <Genres
-                                navigation={this.props.navigation}
-                                item={menu} />
-                        }
-                    </ScrollView>
+                    (menu == 'Home' ?
+                        this._renderList() :
+                        <Genres style={{ flex: 1 }}
+                            navigation={this.props.navigation}
+                            item={menu} />)
                 }
             </View>
         )
@@ -80,13 +75,15 @@ class Home extends Component {
     _renderList() {
 
         return (
-            <View style={{ flex: 1 }}>
-                <Slide />
-                <List
-                    data={this.props.data}
-                    getTwoRows={this.getTwoRows}
-                    navigation={this.props.navigation} />
-            </View>
+            <ScrollView style={[{ flex: 1 }, styles.container]}>
+                <View style={{ flex: 1 }}>
+                    <Slide />
+                    <List
+                        data={this.props.data}
+                        getTwoRows={this.getTwoRows}
+                        navigation={this.props.navigation} />
+                </View>
+            </ScrollView>
         )
     }
 }

@@ -56,7 +56,7 @@ class Genres extends Component {
     render() {
         const { isFetching } = this.props.data
         return (
-            <View style={{ flex: 1 }}>
+            <View style={{ flex: 1, backgroundColor: 'black' }}>
                 {isFetching ? this.renderActivityIndicator() : this.renderList()}
             </View>
         )
@@ -70,7 +70,8 @@ const styles = StyleSheet.create({
     },
     activityIndicatorContainer: {
         flex: 1,
-        justifyContent: 'center'
+        justifyContent: 'center',
+        alignItems: 'center'
     }
 })
 
