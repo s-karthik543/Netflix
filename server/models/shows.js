@@ -1,6 +1,7 @@
-import mongoose, { Schema } from 'mongoose'
+var mongoose = require('mongoose')
 
-var showSchema = new Schema(
+
+var showSchema = mongoose.Schema(
     {
         id: Number,
         name: String,
@@ -14,5 +15,7 @@ var showSchema = new Schema(
         }
     }
 )
+module.exports=mongoose.model('shows', showSchema)
+// module.exports=
 
-export default mongoose.model('shows', showSchema)
+// export default mongoose.model('shows', showSchema)
