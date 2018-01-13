@@ -1,4 +1,4 @@
-import express from 'express'
+var express =require('express')
 const app = express()
 
 import request from 'request'
